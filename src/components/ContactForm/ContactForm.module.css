@@ -1,0 +1,26 @@
+.contactForm{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.nameLabel{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 170px;
+}
+
+.contactForm button{
+    width: 100px;
+    background-color: orangered;
+ border-color: orangered;
+ color: black;
+}
+
+.input{
+ background-color: black;
+    border-color: orangered;
+    color: orangered;
+}
