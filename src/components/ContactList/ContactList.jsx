@@ -11,8 +11,8 @@ function ContactList() {
 
   return (
     <ul>
-      {contacts.map(contact => (
-        <li key={contact.id}>{contact.name}</li>
+      {contacts.map((contact, index) => (
+        <li key={contact.id || index}>{contact.name}</li>
       ))}
     </ul>
   );
