@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { v4 as uuidv4 } from "uuid";
 
 const BASE_URL = "https://connections-api.goit.global/docs/";
 
@@ -8,7 +9,11 @@ export const fetchContacts = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await axios.get(`${BASE_URL}/contacts`);
-      return response.data;
+      const dataWithId = response.data.map(contact => ({
+        ...contact,
+        id: contact.id || uuidv4(), 
+      }));
+      return dataWithId;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
     }
@@ -43,7 +48,6 @@ const contactSlice = createSlice({
   name: "contacts",
   initialState: {
     items: [],
-    filter: "",
     isLoading: false,
     error: null,
   },
@@ -67,10 +71,11 @@ const contactSlice = createSlice({
         state.error = action.payload;
       })
       .addCase(addContact.fulfilled, (state, action) => {
-        if (!Array.isArray(state.items)) {
-          state.items = []; 
-        }
-        state.items.push(action.payload);
+        const newContact = {
+          ...action.payload,
+          id: action.payload.id || uuidv4(),
+        };
+        state.items.push(newContact);
         state.error = null;
       })
       .addCase(deleteContact.fulfilled, (state, action) => {

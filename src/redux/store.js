@@ -2,16 +2,14 @@ import { configureStore } from "@reduxjs/toolkit";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { combineReducers } from "@reduxjs/toolkit";
-
-// Importă slice-urile care au fost create
 import contactsSlice from "./contactSlice";
 import authSlice from "./authSlice";
 
 // Configurarea redux-persist
 const persistConfig = {
-  key: "root",
+  key: "contacts",
   storage,
-  whitelist: ["auth"], 
+  whitelist: ["items"], 
 };
 
 // Combinarea reducerilor

@@ -13,9 +13,9 @@ function ContactsPage() {
     dispatch(fetchContacts());
   }, [dispatch]);
 
+  
   return (
     <div>
-      <h1>Your Contacts</h1>
       <ContactForm />
       <Filter />
       {isLoading && <p>Loading...</p>}
