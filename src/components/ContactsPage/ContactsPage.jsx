@@ -19,7 +19,7 @@ function ContactsPage() {
       <ContactForm />
       <Filter />
       {isLoading && <p>Loading...</p>}
-      {error && <p>Error: {error}</p>}
+      {error && <p>Error: {error.message}</p>}
       <ContactList />
     </div>
   );
